@@ -1,0 +1,14 @@
+extends ../layouts/common
+block content
+	h1 Users
+	form(action='/users/search', method='GET', class='form-inline')
+		div(class="form-group mb-2")
+			input(type='text', name='q', class='form-control', value=q, placeholder='Search by name . . .', required)
+		button(class='btn btn-primary mb-2 ml-2') Search
+	ul
+		each user in users
+			li
+				span= user.name
+				span &nbsp;
+				a(href='/users/' + user.id) View
+	a(href='/users/create') Create new user
