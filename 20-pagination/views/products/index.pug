@@ -1,0 +1,24 @@
+extends ../layouts/common
+block content
+	h1 Products
+	each product in products
+		.col-3.d-inline-flex.mb-2
+			.card
+				img.card-img-top(src=product.image, alt="Card image cap")
+				.card-body
+					h5.card-title= product.name
+					p.card-text= product.description
+					a.btn.btn-primary(href="#") View
+
+	nav
+		ul.pagination.justify-content-center
+			li.page-item(class=(status === 'start' ? 'disabled' : ''))
+				a.page-link(href="/products?page=" + (curPage-1), tabindex="-1") Previous
+			li.page-item(class=(pages[0] === curPage ? 'active' : ''))
+				a.page-link(href="/products?page=" + pages[0])= pages[0]
+			li.page-item(class=(pages[1] === curPage ? 'active' : ''))
+				a.page-link(href="/products?page=" +  pages[1])= pages[1]
+			li.page-item(class=(pages[2] === curPage ? 'active' : ''))
+				a.page-link(href="/products?page=" + pages[2])= pages[2]
+			li.page-item(class=(status === 'end' ? 'disabled' : ''))
+				a.page-link(href="/products?page=" + (curPage+1), tabindex="1") Next
