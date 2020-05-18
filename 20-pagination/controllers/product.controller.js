@@ -11,23 +11,15 @@ module.exports.index = (req, res) => {
 	var numOfPage = Math.ceil(len / 8);
 
 	var status = '';
-	var pageList = [];
 	if (page === 1) {
 		status = 'start';
-		pageList = [1, 2, 3];
 	}
 	else if (page === numOfPage) {
 		status = 'end';
-		pageList = [page-2, page-1, page];
 	}
-	else {
-		pageList = [page-1, page, page+1];
-	}
-
 	res.render('products/index', {
 		products: db.get('products').value().slice(start, end),
-		curPage: page,
-		pages: pageList,
+		page: page,
 		status: status
 	});
 }

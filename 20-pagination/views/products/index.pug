@@ -12,13 +12,36 @@ block content
 
 	nav
 		ul.pagination.justify-content-center
-			li.page-item(class=(status === 'start' ? 'disabled' : ''))
-				a.page-link(href="/products?page=" + (curPage-1), tabindex="-1") Previous
-			li.page-item(class=(pages[0] === curPage ? 'active' : ''))
-				a.page-link(href="/products?page=" + pages[0])= pages[0]
-			li.page-item(class=(pages[1] === curPage ? 'active' : ''))
-				a.page-link(href="/products?page=" +  pages[1])= pages[1]
-			li.page-item(class=(pages[2] === curPage ? 'active' : ''))
-				a.page-link(href="/products?page=" + pages[2])= pages[2]
-			li.page-item(class=(status === 'end' ? 'disabled' : ''))
-				a.page-link(href="/products?page=" + (curPage+1), tabindex="1") Next
+			if (status === 'start')
+				li.page-item.disabled
+					a.page-link(href="#" + (page-1), tabindex="-1") Previous
+				li.page-item.active
+					a.page-link(href="/products?page=" + page)= page
+				li.page-item
+					a.page-link(href="/products?page=" +  (page+1))= (page+1)
+				li.page-item
+					a.page-link(href="/products?page=" + (page+2))= (page+2)
+				li.page-item
+					a.page-link(href="/products?page=" + (page+1), tabindex="1") Next
+			else if (status === 'end')
+				li.page-item
+					a.page-link(href="/products?page=" + (page-1), tabindex="-1") Previous
+				li.page-item
+					a.page-link(href="/products?page=" + (page-2))= (page-2)
+				li.page-item
+					a.page-link(href="/products?page=" +  (page-1))= (page-1)
+				li.page-item.active
+					a.page-link(href="/products?page=" + page)= page
+				li.page-item.disabled
+					a.page-link(href="#", tabindex="1") Next
+			else
+				li.page-item
+					a.page-link(href="/products?page=" + (page-1), tabindex="-1") Previous
+				li.page-item
+					a.page-link(href="/products?page=" + (page-1))= (page-1)
+				li.page-item.active
+					a.page-link(href="/products?page=" +  page)= page
+				li.page-item
+					a.page-link(href="/products?page=" + (page+1))= (page+1)
+				li.page-item
+					a.page-link(href="/products?page=" + (page+1), tabindex="1") Next
